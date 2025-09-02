@@ -1,9 +1,10 @@
-import { SiJavascript,  SiReact,  SiHtml5,  SiCss3,
-         SiPython,  SiNestjs,  SiExpress,  SiNextdotjs} from "react-icons/si";
+"use client";
+import { SiJavascript, SiReact, SiHtml5, SiCss3, SiPython, SiNestjs, SiExpress, SiNextdotjs } from "react-icons/si";
+import Card from "./components/card";
 
 export default function Home() {
   const icons = [
-    <SiCss3 size={36} />,                                                     
+    <SiCss3 size={36} />,
     <SiExpress size={36} />,
     <SiHtml5 size={36} />,
     <SiJavascript size={36} />,
@@ -13,20 +14,19 @@ export default function Home() {
     <SiReact size={36} />,
   ];
 
+  // cria os pares
   const cards = icons.flatMap((icon) => [
     { id: crypto.randomUUID(), value: icon },
     { id: crypto.randomUUID(), value: icon },
   ]);
 
+  // embaralha as cartas
+  const shuffled = cards.sort(() => Math.random() - 0.5);
+
   return (
     <div className="grid grid-cols-4 gap-3 max-w-[600px] mx-auto mt-3">
-      {cards.map((card) => (
-        <div
-          key={card.id}
-          className="flex items-center justify-center bg-blue-400 rounded-lg h-20 font-bold"
-        >
-          {card.value}
-        </div>
+      {shuffled.map((card) => (
+        <Card key={card.id} value={card.value} />
       ))}
     </div>
   );
