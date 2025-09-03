@@ -1,12 +1,11 @@
 "use client";
-import { JSX, useState } from "react";
+import { useState } from "react";
 
 interface CardProps {
-  value: JSX.Element; 
+  value: string;
 }
 
 export default function Card({ value }: CardProps) {
-    
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -14,7 +13,11 @@ export default function Card({ value }: CardProps) {
       onClick={() => setFlipped(!flipped)}
       className="flex items-center justify-center bg-blue-400 rounded-lg h-20 w-20 font-bold cursor-pointer select-none"
     >
-      {flipped ? value : "❓"}
+      {flipped ? (
+        <img src={value} alt="carta" className="w-12 h-12" />
+      ) : (
+        "❓"
+      )}
     </div>
   );
 }
