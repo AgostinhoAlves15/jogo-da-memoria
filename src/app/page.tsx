@@ -1,17 +1,14 @@
 "use client";
+import { useState } from "react";
 import Deck from "./components/Deck";
 import Start from "./components/Start";
 
 export default function Home() {
-  return (
-    <div className="max-w-[600px] mx-auto mt-3">
-      {/* Deck de cartas */}
-      <Deck />
+  const [resetCounter, setResetCounter] = useState(0);
 
-      {/* Cronômetro */}
-      <div className="mt-6">
-        <Start />
-      </div>
+  return (
+    <div className="flex flex-col items-center mt-6">
+      <Start onReset={() => setResetCounter(prev => prev + 1)} />
+      <Deck resetTrigger={resetCounter} />
     </div>
-  );
-}
+  );}
